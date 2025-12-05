@@ -9,11 +9,11 @@ locals {
 resource "azuread_application" "aad_web_app" {
   count                         = var.isInAutomation ? 0 : 1
   display_name                  = "infoasst_web_access_${var.randomString}"
-  identifier_uris               = ["api://infoasst-${var.randomString}"]
   owners                        = local.owner_ids
   sign_in_audience              = "AzureADMyOrg"
   oauth2_post_response_required = true
   service_management_reference = var.serviceManagementReference
+  
   web {
     redirect_uris = ["https://infoasst-web-${var.randomString}.${var.azure_websites_domain}/.auth/login/aad/callback"]
     implicit_grant {
@@ -21,6 +21,16 @@ resource "azuread_application" "aad_web_app" {
       id_token_issuance_enabled     = true
     }
   }
+  
+  api {
+    requested_access_token_version = 2
+  }
+}
+
+resource "azuread_application_identifier_uri" "aad_web_app_uri" {
+  count          = var.isInAutomation ? 0 : 1
+  application_id = azuread_application.aad_web_app[0].id
+  identifier_uri = "api://${azuread_application.aad_web_app[0].client_id}"
 }
 
 
