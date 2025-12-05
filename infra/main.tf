@@ -325,6 +325,7 @@ module "enrichmentApp" {
     AZURE_AI_CREDENTIAL_DOMAIN              = var.azure_ai_private_link_domain
     AZURE_OPENAI_AUTHORITY_HOST             = var.azure_openai_authority_host
   }
+  depends_on = [ module.kvModule ]
 }
 
 # // The application frontend
@@ -488,6 +489,8 @@ module "functions" {
   container_registry_id                 = module.acr.acr_id
   azure_environment                     = var.azure_environment
   azure_ai_credential_domain            = var.azure_ai_private_link_domain
+
+depends_on = [ module.kvModule ]
 }
 
 module "openaiServices" {
