@@ -1,6 +1,6 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT license.
-
+export DOCKER_API_VERSION=1.43
 SHELL := /bin/bash
 
 .PHONY: help
