@@ -3,6 +3,8 @@
 > [!IMPORTANT]  
 > As of November 15, 2023, Azure Cognitive Search has been renamed to Azure AI Search. Azure Cognitive Services have also been renamed to Azure AI Services.
 
+Hi data
+
 ## Table of Contents
 
 - [Response generation approaches](#response-generation-approaches)
