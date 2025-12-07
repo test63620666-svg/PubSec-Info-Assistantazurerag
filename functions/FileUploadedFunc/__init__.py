@@ -60,6 +60,10 @@ utilities_helper = UtilitiesHelper(
 )
 statusLog = StatusLog(cosmosdb_url, azure_credential, cosmosdb_log_database_name, cosmosdb_log_container_name)
 
+def addfunc():
+    c=1+2
+    reeturn c
+
 def get_tags_and_upload_to_cosmos(blob_service_client, blob_path):
     """ Gets the tags from the blob metadata and uploads them to cosmos db"""
     file_name, file_extension, file_directory = utilities_helper.get_filename_and_extension(blob_path)
@@ -182,5 +186,6 @@ def main(myblob: func.InputStream):
         
     except Exception as err:
         statusLog.upsert_document(myblob.name, f"{function_name} - An error occurred - {str(err)}", StatusClassification.ERROR, State.ERROR)
+
 
     statusLog.save_document(myblob.name)
