@@ -64,6 +64,10 @@ def addfunc():
     d=10
     return d
 
+def mulfunc():
+    mul=10
+    return mul
+
 def get_tags_and_upload_to_cosmos(blob_service_client, blob_path):
     """ Gets the tags from the blob metadata and uploads them to cosmos db"""
     file_name, file_extension, file_directory = utilities_helper.get_filename_and_extension(blob_path)
@@ -189,3 +193,4 @@ def main(myblob: func.InputStream):
 
 
     statusLog.save_document(myblob.name)
+
